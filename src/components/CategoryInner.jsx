@@ -1,5 +1,6 @@
 var React = require('tuxx/React');
 var CategoriesList = require('./CategoriesList.jsx');
+var ProductsList = require('./ProductsList.jsx');
 var categoriesStore = require('../stores/categoriesStore');
 var categoriesActions = require('../actions/categoriesActions');
 
@@ -38,7 +39,7 @@ var CategoryInner = React.createOwnerClass({
       <CategoriesList parentId={id} />
     );
     else return (
-      <div>Список продуктов</div>
+      <ProductsList category={id} />
     )
   }
 });
