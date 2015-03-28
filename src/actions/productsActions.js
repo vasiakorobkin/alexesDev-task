@@ -1,7 +1,7 @@
 var PRODUCTCRUDURL = "/products";
 
 var Actions = require('tuxx/Actions');
-var request = require('superagent');
+var httpOrLocalStorage = require('./helpers/ajax').httpOrLocalStorage;
 
 var productsActions = Actions.createActionCategory({
   category: 'products',
@@ -10,33 +10,10 @@ var productsActions = Actions.createActionCategory({
 });
 
 productsActions.before('getAll', function(dispatch, actionBody){
-  if(window.siteDoesAvailable){
-    request.get(PRODUCTCRUDURL, function(err, res){
-      if(err){
-        console.log(err);
-        getFromLocalStorage();
-      } else {
-        if(!!window.localStorage) window.localStorage.setItem('products', res.text);
-        dispatch(res.body);
-      }
-    });
-  } else {
-    getFromLocalStorage();
-  }
-  function getFromLocalStorage(){
-    if(!!window.localStorage){
-    var products;
-    var productsJSON = window.localStorage.getItem('products');
-    try {
-        products = JSON.parse(productsJSON);
-    } catch (e) {
-        console.log(e);
-        products = {};
-    }
-    console.log(products);
-    dispatch(products);
-    }
-  }
+  httpOrLocalStorage({
+    url: PRODUCTCRUDURL,
+    callback: dispatch
+  });
 });
 
 module.exports = productsActions;

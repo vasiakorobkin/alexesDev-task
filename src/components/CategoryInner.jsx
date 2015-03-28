@@ -5,12 +5,17 @@ var categoriesStore = require('../stores/categoriesStore');
 var categoriesActions = require('../actions/categoriesActions');
 
 var CategoryInner = React.createOwnerClass({
+  statics: {
+    willTransitionTo: function(){
+      categoriesActions.getAll();
+    }
+  },
   getInitialState: function(){
-    categoriesActions.getAll();
     return {
       categories: categoriesStore.returnAll(),
     }
   },
+  registerOwnerProps: function(){},
   connectOwnerToStore: function(){
     return {
       store: categoriesStore,
@@ -19,7 +24,6 @@ var CategoryInner = React.createOwnerClass({
       }.bind(this)
     }
   },
-  registerOwnerProps: function(){},
   render: function(){
     var id = this.props.params.id;
     var categories = this.state.categories;
@@ -27,10 +31,10 @@ var CategoryInner = React.createOwnerClass({
       return category.id == id;
     });
     if(current.length == 0) return (
-      <div>Не удалось найти категорию</div>
+      <div className='red'>Не удалось найти категорию</div>
     ); 
     if(current.length > 1) return (
-      <div>Ошибка: идентификатор не уникален</div>
+      <div className='red'>Ошибка: идентификатор не уникален</div>
     );
     var children = categories.filter(function(category){
       return category.parentId == id

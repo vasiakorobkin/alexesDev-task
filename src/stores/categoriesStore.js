@@ -1,21 +1,7 @@
-var categoriesActions = require('../actions/categoriesActions.js');
+var categoriesActions = require('../actions/categoriesActions');
 var ActionStores = require('tuxx/Stores/ActionStores');
+var getBaseStoreSettings = require('./helpers/getBaseStoreSettings');
 
-var categoriesStore = ActionStores.createStore({
-  _categories: [],
-  returnAll: function(){
-    return this._categories;
-  },
-  getAllHandler: function(data){
-    this._categories = data;
-    this.emitChange();
-  },
-  register: function(){
-    return {
-      categories: {
-        getAll: this.getAllHandler
-      }
-    }
-  }
-});
+var categoriesStore = ActionStores.createStore(getBaseStoreSettings('categories'));
+
 module.exports = categoriesStore;

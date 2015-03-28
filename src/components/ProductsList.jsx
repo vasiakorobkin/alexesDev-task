@@ -4,11 +4,14 @@ var productsActions = require('../actions/productsActions');
 
 var ProductsList = React.createOwnerClass({
   getInitialState: function(){
-    productsActions.getAll();
     return {
       products: productsStore.returnAll()
     }
   },
+  componentWillMount: function(){
+    productsActions.getAll();
+  },
+  registerOwnerProps: function(){},
   connectOwnerToStore: function(){
     return {
       store: productsStore,
@@ -17,7 +20,6 @@ var ProductsList = React.createOwnerClass({
       }.bind(this)
     }
   },
-  registerOwnerProps: function(){},
   render: function(){
     var categoryId = this.props.category;
     var products = this.state.products;

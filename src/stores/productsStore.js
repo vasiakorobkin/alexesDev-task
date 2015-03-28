@@ -1,21 +1,7 @@
-var productsActions = require('../actions/productsActions.js');
+var productsActions = require('../actions/productsActions');
 var ActionStores = require('tuxx/Stores/ActionStores');
+var getBaseStoreSettings = require('./helpers/getBaseStoreSettings');
 
-var productsStore = ActionStores.createStore({
-  _products: [],
-  returnAll: function(){
-    return this._products;
-  },
-  getAllHandler: function(data){
-    this._products = data;
-    this.emitChange();
-  },
-  register: function(){
-    return {
-      products: {
-        getAll: this.getAllHandler
-      }
-    }
-  }
-});
+var productsStore = ActionStores.createStore(getBaseStoreSettings('products'));
+
 module.exports = productsStore;

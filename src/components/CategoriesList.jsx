@@ -4,8 +4,12 @@ var categoriesStore = require('../stores/categoriesStore');
 var categoriesActions = require('../actions/categoriesActions');
 
 var CategoriesList = React.createOwnerClass({
+  statics: {
+    willTransitionTo: function(){
+      categoriesActions.getAll();
+    }
+  },
   getInitialState: function(){
-    categoriesActions.getAll();
     return {
       categories: categoriesStore.returnAll(),
     }
