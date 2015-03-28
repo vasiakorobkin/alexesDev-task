@@ -30,7 +30,7 @@ var CategoryInner = React.createOwnerClass({
       <div>Не удалось найти категорию</div>
     ); 
     if(current.length > 1) return (
-      <div>Ошибка: идентификатор категории не уникален</div>
+      <div>Ошибка: идентификатор не уникален</div>
     );
     var children = categories.filter(function(category){
       return category.parentId == id

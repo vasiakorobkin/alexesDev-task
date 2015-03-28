@@ -1,0 +1,10 @@
+CACHE MANIFEST
+/index.html
+/common.css
+/common.js
+
+NETWORK:
+*
+
+FALLBACK:
+/is_online.js /is_offline.js

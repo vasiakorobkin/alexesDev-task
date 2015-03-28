@@ -1,0 +1,42 @@
+body{
+	background: #ffffd5;
+}
+#app{
+	font: 20px/100% 'Arial';
+	text-align: center;
+}
+.indicator{
+	display: inline-block;
+	font: 48px/100% 'Arial';
+	padding: 20px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+.green{
+	color: #52AA55;
+}
+.red{
+	color: #ff0000;
+}
+.online-only{
+	display: inline-block;
+	font-size: 16px;
+	margin: 0 20px;
+}
+.online-only.active{
+	color: #000;
+	cursor: default;
+	text-decoration: none;
+}
+.text-list{
+	display: inline-block;
+	padding: 20px;
+	text-align: left;
+}
+.text-item{
+	margin: 20px 0 0 0;
+}
+.center-big-text{
+	font: 60px/100% 'Arial';
+	margin: 100px 0 0 0;
+}
